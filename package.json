@@ -1,0 +1,29 @@
+{
+	"name": "open-music-api",
+	"module": "server.js",
+	"type": "commonjs",
+	"scripts": {
+		"build:local": "npm install && npm run copy-env && npm run migrate up && npm run start:dev",
+		"build:server": "npm install && npm run copy-env && npm run migrate up && sudo npm i -g pm2 && pm2 start npm --name \"notes-app-back-end\" -- run start:prod",
+		"start": "node src/server.js",
+		"start:dev": "NODE_ENV=development && nodemon src/server.js",
+		"start:prod": "NODE_ENV=production && node src/server.js",
+		"copy-env": "\"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
+		"migrate": "node-pg-migrate"
+	},
+	"devDependencies": {
+		"@types/pg": "^8.11.6",
+		"eslint": "^9.7.0",
+		"nodemon": "^3.1.4",
+		"prettier": "^3.3.3"
+	},
+	"dependencies": {
+		"@hapi/hapi": "^21.3.10",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.4.5",
+		"joi": "^17.13.3",
+		"nanoid": "^3.3.4",
+		"node-pg-migrate": "^7.5.2",
+		"pg": "^8.12.0"
+	}
+}
