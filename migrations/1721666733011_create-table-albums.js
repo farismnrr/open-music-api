@@ -1,5 +1,3 @@
-exports.shorthands = undefined;
-
 exports.up = pgm => {
 	pgm.createTable("albums", {
 		id: { type: "varchar(50)", primaryKey: true },

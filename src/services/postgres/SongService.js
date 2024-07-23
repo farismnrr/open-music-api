@@ -47,11 +47,11 @@ class SongService {
 		};
 
 		if (title) {
-			addCondition('title', title);
+			addCondition("title", title);
 		}
 
 		if (performer) {
-			addCondition('performer', performer);
+			addCondition("performer", performer);
 		}
 
 		const whereClause = conditions.length ? ` WHERE ${conditions.join(" AND ")}` : "";
@@ -75,7 +75,7 @@ class SongService {
 			throw new NotFoundError("Song tidak ditemukan");
 		}
 
-		return result.rows.map(mapSongDBToModel)[0];
+		return mapSongDBToModel(result.rows[0]);
 	}
 
 	async editSongById(id, { title, year, performer, genre, duration, albumId }) {

@@ -14,7 +14,7 @@ dotenv.config();
 const createServer = () => {
 	const server = Hapi.server({
 		port: process.env.PORT || 8080,
-		host: process.env.NODE_ENV === "development" ? "localhost" : "0.0.0.0",
+		host: process.env.HOST || "localhost",
 		routes: {
 			cors: {
 				origin: ["*"]
