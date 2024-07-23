@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "18cce8d2-8cfa-4bca-b6d9-5d6ec1334ae6",
+		"_postman_id": "1c735067-f44b-47bd-9581-79922142467a",
 		"name": "Open Music API V1 Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30262904"
@@ -33,7 +33,8 @@
 									"\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -70,7 +71,8 @@
 									" \r",
 									"repeatRequestUntilDatasetEmpty();"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -87,10 +89,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/albums",
+							"raw": "http://{{url}}:{{port}}/albums",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -130,7 +132,8 @@
 									"    pm.environment.set('albumId', responseJson.data.albumId);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -147,10 +150,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/albums",
+							"raw": "http://{{url}}:{{port}}/albums",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -188,7 +191,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -196,10 +200,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/xxx",
+							"raw": "http://{{url}}:{{port}}/albums/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -243,7 +247,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -251,10 +256,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumId}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -289,7 +294,8 @@
 									"\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -326,7 +332,8 @@
 									" \r",
 									"repeatRequestUntilDatasetEmpty();"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -343,10 +350,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumId}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -385,7 +392,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -402,10 +410,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/xxx",
+							"raw": "http://{{url}}:{{port}}/albums/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -464,7 +472,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -481,10 +490,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumId}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -523,7 +532,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -531,10 +541,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/xxx",
+							"raw": "http://{{url}}:{{port}}/albums/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -585,7 +595,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -593,10 +604,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumId}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -638,7 +649,8 @@
 									"pm.environment.set('currentBadSongPayload', JSON.stringify(currentBadSongPayload));\r",
 									"pm.environment.set('badSongPayloads', badSongPayloads);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -675,7 +687,8 @@
 									" \r",
 									"repeatRequestUntilDatasetEmpty();"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -692,10 +705,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -714,7 +727,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -744,7 +758,8 @@
 									"    pm.environment.set('songId', responseJson.data.songId);\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -761,10 +776,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -783,7 +798,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -792,7 +808,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -809,10 +826,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -859,7 +876,8 @@
 									"    });\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -867,10 +885,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -908,7 +926,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -916,10 +935,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/xxx",
+							"raw": "http://{{url}}:{{port}}/songs/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -966,7 +985,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -974,10 +994,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songId}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1014,7 +1034,8 @@
 									"pm.environment.set('currentBadSongPayload', JSON.stringify(currentBadSongPayload));\r",
 									"pm.environment.set('badSongPayloads', badSongPayloads);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1051,7 +1072,8 @@
 									" \r",
 									"repeatRequestUntilDatasetEmpty();"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1068,10 +1090,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songId}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1091,7 +1113,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1119,7 +1142,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1136,10 +1160,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/xxx",
+							"raw": "http://{{url}}:{{port}}/songs/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1159,7 +1183,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1210,7 +1235,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1227,10 +1253,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songId}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1269,7 +1295,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1277,10 +1304,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/xxx",
+							"raw": "http://{{url}}:{{port}}/songs/xxx",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1300,7 +1327,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1340,7 +1368,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1357,10 +1386,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songId}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1389,7 +1418,8 @@
 											"const responseJson = pm.response.json();\r",
 											"pm.environment.set('albumId', responseJson.data.albumId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1406,10 +1436,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/albums",
+									"raw": "http://{{url}}:{{port}}/albums",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1429,7 +1459,8 @@
 											"const responseJson = pm.response.json();\r",
 											"pm.environment.set('albumIdWithNoSongs', responseJson.data.albumId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1446,10 +1477,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/albums",
+									"raw": "http://{{url}}:{{port}}/albums",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1470,7 +1501,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1498,7 +1530,8 @@
 									"    pm.expect(responseJson.data.songId).to.be.a('string');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1515,10 +1548,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1537,7 +1570,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1565,7 +1599,8 @@
 									"    pm.expect(responseJson.data.songId).to.be.a('string');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1582,10 +1617,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs",
+							"raw": "http://{{url}}:{{port}}/songs",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1630,7 +1665,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1638,10 +1674,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumId}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1687,7 +1723,8 @@
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1695,10 +1732,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/albums/{{albumIdWithNoSongs}}",
+							"raw": "http://{{url}}:{{port}}/albums/{{albumIdWithNoSongs}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -1726,7 +1763,8 @@
 										"exec": [
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1736,7 +1774,8 @@
 											"const { data: { songId } } = pm.response.json();\r",
 											"pm.environment.set('songIdA', songId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1753,10 +1792,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/songs",
+									"raw": "http://{{url}}:{{port}}/songs",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1775,7 +1814,8 @@
 										"exec": [
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1785,7 +1825,8 @@
 											"const { data: { songId } } = pm.response.json();\r",
 											"pm.environment.set('songIdB', songId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1802,10 +1843,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/songs",
+									"raw": "http://{{url}}:{{port}}/songs",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1824,7 +1865,8 @@
 										"exec": [
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1834,7 +1876,8 @@
 											"const { data: { songId } } = pm.response.json();\r",
 											"pm.environment.set('songIdC', songId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1851,10 +1894,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/songs",
+									"raw": "http://{{url}}:{{port}}/songs",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1873,7 +1916,8 @@
 										"exec": [
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1883,7 +1927,8 @@
 											"const { data: { songId } } = pm.response.json();\r",
 											"pm.environment.set('songIdD', songId);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1900,10 +1945,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:{{port}}/songs",
+									"raw": "http://{{url}}:{{port}}/songs",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{url}}"
 									],
 									"port": "{{port}}",
 									"path": [
@@ -1953,7 +1998,8 @@
 									"    });\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1961,10 +2007,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs?title=cint",
+							"raw": "http://{{url}}:{{port}}/songs?title=cint",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2018,7 +2064,8 @@
 									"    });\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2026,10 +2073,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs?performer=chris",
+							"raw": "http://{{url}}:{{port}}/songs?performer=chris",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2084,7 +2131,8 @@
 									"    });\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2092,10 +2140,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:{{port}}/songs?title=kupu&performer=peter",
+							"raw": "http://{{url}}:{{port}}/songs?title=kupu&performer=peter",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2124,7 +2172,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -2133,7 +2182,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2150,10 +2200,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songIdA}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songIdA}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2173,7 +2223,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -2182,7 +2233,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2199,10 +2251,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songIdB}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songIdB}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2222,7 +2274,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -2231,7 +2284,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2248,10 +2302,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songIdC}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songIdC}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
@@ -2271,7 +2325,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -2280,7 +2335,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -2297,10 +2353,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/songs/{{songIdD}}",
+							"raw": "http://{{url}}:{{port}}/songs/{{songIdD}}",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"port": "{{port}}",
 							"path": [
