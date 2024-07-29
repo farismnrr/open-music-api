@@ -1,3 +1,0 @@
-# Deploy to PaaS App Engine
-runtime: nodejs22
-service: default
