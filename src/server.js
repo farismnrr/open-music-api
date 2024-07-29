@@ -34,18 +34,10 @@ const CollaborationsValidator = require("./validator/collaborations");
 
 const ClientError = require("./exceptions/ClientError");
 
-const init = async () => {
-	const albumsService = new AlbumsService();
-	const songsService = new SongsService();
-	const usersService = new UsersService();
-	const authenticationsService = new AuthenticationsService();
-	const collaborationsService = new CollaborationsService();
-	const playlistsService = new PlaylistsService(collaborationsService);
-	const playlistSongsService = new PlaylistSongsService(songsService);
-
+const createServer = () => {
 	const server = Hapi.server({
-		port: process.env.PORT,
-		host: process.env.HOST,
+		port: process.env.PORT || 8080,
+		host: process.env.HOST || "localhost",
 		routes: {
 			cors: {
 				origin: ["*"]
@@ -53,6 +45,10 @@ const init = async () => {
 		}
 	});
 
+	return server;
+};
+
+const jwtPlugin = async server => {
 	await server.register([
 		{
 			plugin: Jwt
@@ -74,6 +70,16 @@ const init = async () => {
 			}
 		})
 	});
+};
+
+const registerPlugins = async server => {
+	const albumsService = new AlbumsService();
+	const songsService = new SongsService();
+	const usersService = new UsersService();
+	const authenticationsService = new AuthenticationsService();
+	const collaborationsService = new CollaborationsService();
+	const playlistsService = new PlaylistsService(collaborationsService);
+	const playlistSongsService = new PlaylistSongsService(songsService);
 
 	await server.register([
 		{
@@ -130,37 +136,33 @@ const init = async () => {
 			}
 		}
 	]);
+};
 
+const handleClientError = server => {
 	server.ext("onPreResponse", (request, h) => {
 		const { response } = request;
-
-		if (response instanceof Error) {
-			if (response instanceof ClientError) {
-				const newResponse = h.response({
-					status: "fail",
-					message: response.message
-				});
-				newResponse.code(response.statusCode);
-				return newResponse;
-			}
-
-			if (!response.isServer) {
-				return h.continue;
-			}
-
+		if (response instanceof ClientError) {
 			const newResponse = h.response({
-				status: "error",
-				message: "Internal server error"
+				status: "fail",
+				message: response.message
 			});
-			newResponse.code(500);
+			newResponse.code(response.statusCode);
 			return newResponse;
 		}
-
 		return h.continue;
 	});
+};
+
+const startServer = async () => {
+	const server = createServer();
+
+	await jwtPlugin(server);
+	await registerPlugins(server);
+
+	handleClientError(server);
 
 	await server.start();
 	console.log(`Server running on ${server.info.uri}`);
 };
 
-init();
+startServer();
