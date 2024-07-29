@@ -53,24 +53,6 @@ class PlaylistsHandler {
 	}
 	// End Playlist Handler
 
-	// Playlist Song Activities Handler
-	async getPlaylistSongActivitiesHandler(request, h) {
-		const { id: credentialId } = request.auth.credentials;
-		const { id: playlistId } = request.params;
-
-		await this._playlistsService.verifyPlaylistAccess(playlistId, credentialId);
-		const playlistSongActivities =
-			await this._playlistsService.getPlaylistSongActivities(playlistId);
-
-		const response = h.response({
-			status: "success",
-			data: playlistSongActivities
-		});
-		response.code(200);
-		return response;
-	}
-	// End Playlist Song Activities Handler
-
 	// Playlist Song Handler
 	async postPlaylistSongHandler(request, h) {
 		this._validator.validatePlaylistSongPayload(request.payload);
@@ -138,6 +120,24 @@ class PlaylistsHandler {
 		return response;
 	}
 	// End Playlist Song Handler
+
+	// Playlist Song Activities Handler
+	async getPlaylistSongActivitiesHandler(request, h) {
+		const { id: credentialId } = request.auth.credentials;
+		const { id: playlistId } = request.params;
+
+		await this._playlistsService.verifyPlaylistAccess(playlistId, credentialId);
+		const playlistSongActivities =
+			await this._playlistsService.getPlaylistSongActivities(playlistId);
+
+		const response = h.response({
+			status: "success",
+			data: playlistSongActivities
+		});
+		response.code(200);
+		return response;
+	}
+	// End Playlist Song Activities Handler
 }
 
 module.exports = PlaylistsHandler;
