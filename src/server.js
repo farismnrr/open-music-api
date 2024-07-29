@@ -1,46 +1,51 @@
+require("dotenv").config();
+
 const Hapi = require("@hapi/hapi");
 const Jwt = require("@hapi/jwt");
 
-// User
-const Users = require("./api/users");
-const UsersService = require("./services/postgres/UserService");
-const UsersValidator = require("./validator/users");
-
-// Authentication
-const Auth = require("./api/auth");
-const AuthService = require("./services/postgres/AuthService");
-const AuthValidator = require("./validator/auth");
-const TokenManager = require("./tokenize/TokenManager");
-
-// Albums
-const Albums = require("./api/albums");
-const AlbumsService = require("./services/postgres/AlbumService");
+const albums = require("./api/albums");
+const AlbumsService = require("./services/postgres/AlbumsService");
 const AlbumsValidator = require("./validator/albums");
 
-// Songs
-const Songs = require("./api/songs");
-const SongsService = require("./services/postgres/SongService");
+const songs = require("./api/songs");
+const SongsService = require("./services/postgres/SongsService");
 const SongsValidator = require("./validator/songs");
 
-// Collaborations
-const Collaborations = require("./api/collaborations");
-const CollaborationsService = require("./services/postgres/CollaborationsService");
-const CollaborationsValidator = require("./validator/collab");
+const users = require("./api/users");
+const UsersService = require("./services/postgres/UsersService");
+const UsersValidator = require("./validator/users");
 
-// Playlists
-const Playlists = require("./api/playlists");
+const authentications = require("./api/authentications");
+const AuthenticationsService = require("./services/postgres/AuthenticationsService");
+const AuthenticationsValidator = require("./validator/authentications");
+const TokenManager = require("./tokenize/TokenManager");
+
+const playlists = require("./api/playlists");
 const PlaylistsService = require("./services/postgres/PlaylistsService");
 const PlaylistsValidator = require("./validator/playlists");
 
-const ServerLog = require("./services/server/LogService");
+const playlistSongs = require("./api/playlistSongs");
+const PlaylistSongsService = require("./services/postgres/PlaylistSongsService");
+const PlaylistSongsValidator = require("./validator/playlistSongs");
+
+const collaborations = require("./api/collaborations");
+const CollaborationsService = require("./services/postgres/CollaborationsService");
+const CollaborationsValidator = require("./validator/collaborations");
+
 const ClientError = require("./exceptions/ClientError");
 
-require("dotenv").config();
+const init = async () => {
+	const albumsService = new AlbumsService();
+	const songsService = new SongsService();
+	const usersService = new UsersService();
+	const authenticationsService = new AuthenticationsService();
+	const collaborationsService = new CollaborationsService();
+	const playlistsService = new PlaylistsService(collaborationsService);
+	const playlistSongsService = new PlaylistSongsService(songsService);
 
-const createServer = () => {
 	const server = Hapi.server({
-		port: process.env.PORT || 8080,
-		host: process.env.HOST || "localhost",
+		port: process.env.PORT,
+		host: process.env.HOST,
 		routes: {
 			cors: {
 				origin: ["*"]
@@ -48,10 +53,6 @@ const createServer = () => {
 		}
 	});
 
-	return server;
-};
-
-const registerPlugins = async server => {
 	await server.register([
 		{
 			plugin: Jwt
@@ -66,64 +67,62 @@ const registerPlugins = async server => {
 			sub: false,
 			maxAgeSec: process.env.ACCESS_TOKEN_AGE
 		},
-		validate: artifacts => ({
+		validate: payload => ({
 			isValid: true,
 			credentials: {
-				id: artifacts.decoded.payload.id
+				id: payload.decoded.payload.id
 			}
 		})
 	});
 
-	console.log("ACCESS_TOKEN_KEY:", process.env.ACCESS_TOKEN_KEY);
-	console.log("ACCESS_TOKEN_AGE:", process.env.ACCESS_TOKEN_AGE);
-
-	const userService = new UsersService();
-	const authService = new AuthService();
-	const albumsService = new AlbumsService();
-	const songsService = new SongsService();
-	const collaborationsService = new CollaborationsService();
-	const playlistsService = new PlaylistsService(collaborationsService);
-
 	await server.register([
 		{
-			plugin: Users,
-			options: {
-				service: userService,
-				validator: UsersValidator
-			}
-		},
-		{
-			plugin: Auth,
-			options: {
-				authService,
-				userService,
-				tokenManager: TokenManager,
-				validator: AuthValidator
-			}
-		},
-		{
-			plugin: Albums,
+			plugin: albums,
 			options: {
 				service: albumsService,
 				validator: AlbumsValidator
 			}
 		},
 		{
-			plugin: Songs,
+			plugin: songs,
 			options: {
 				service: songsService,
 				validator: SongsValidator
 			}
 		},
 		{
-			plugin: Playlists,
+			plugin: users,
+			options: {
+				service: usersService,
+				validator: UsersValidator
+			}
+		},
+		{
+			plugin: authentications,
+			options: {
+				authenticationsService,
+				usersService,
+				tokenManager: TokenManager,
+				validator: AuthenticationsValidator
+			}
+		},
+		{
+			plugin: playlists,
 			options: {
 				service: playlistsService,
 				validator: PlaylistsValidator
 			}
 		},
 		{
-			plugin: Collaborations,
+			plugin: playlistSongs,
+			options: {
+				playlistSongsService,
+				playlistsService,
+				validator: PlaylistSongsValidator
+			}
+		},
+		{
+			plugin: collaborations,
 			options: {
 				collaborationsService,
 				playlistsService,
@@ -131,48 +130,37 @@ const registerPlugins = async server => {
 			}
 		}
 	]);
-};
 
-const handleServerRequest = server => {
-	const serverLog = new ServerLog(server);
-
-	if (process.env.NODE_ENV !== "production") {
-		server.ext("onRequest", (request, h) => {
-			serverLog.ServerRequestLog(request);
-			return h.continue;
-		});
-
-		server.ext("onPreResponse", (request, h) => {
-			serverLog.ServerResponseLog(request, h);
-			return h.continue;
-		});
-	}
-};
-
-const handleClientError = server => {
 	server.ext("onPreResponse", (request, h) => {
 		const { response } = request;
-		if (response instanceof ClientError) {
+
+		if (response instanceof Error) {
+			if (response instanceof ClientError) {
+				const newResponse = h.response({
+					status: "fail",
+					message: response.message
+				});
+				newResponse.code(response.statusCode);
+				return newResponse;
+			}
+
+			if (!response.isServer) {
+				return h.continue;
+			}
+
 			const newResponse = h.response({
-				status: "fail",
-				message: response.message
+				status: "error",
+				message: "Internal server error"
 			});
-			newResponse.code(response.statusCode);
+			newResponse.code(500);
 			return newResponse;
 		}
+
 		return h.continue;
 	});
-};
 
-const startServer = async () => {
-	const server = createServer();
-	await registerPlugins(server);
-	handleServerRequest(server);
-	handleClientError(server);
 	await server.start();
-	console.log("PORT:", process.env.PORT);
-	console.log("HOST:", process.env.HOST);
-	console.log(`Server berjalan pada ${server.info.uri}`);
+	console.log(`Server running on ${server.info.uri}`);
 };
 
-startServer();
+init();
