@@ -1,12 +1,18 @@
 const Joi = require("joi");
 
 const PlaylistPayloadSchema = Joi.object({
-  name: Joi.string()
-    .required()
-    .trim()
-    .min(3)
-    .max(100)
-    .regex(/^[a-zA-Z0-9\s\-]+$/),
+	name: Joi.string()
+		.required()
+		.trim()
+		.min(3)
+		.max(100)
+		.regex(/^[a-zA-Z0-9\s\-]+$/)
 });
 
-module.exports = { PlaylistPayloadSchema };
+const PlaylistSongPayloadSchema = Joi.object({
+	songId: Joi.string()
+		.required()
+		.regex(/^[a-zA-Z0-9_-]+$/)
+});
+
+module.exports = { PlaylistPayloadSchema, PlaylistSongPayloadSchema };
