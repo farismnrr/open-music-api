@@ -131,7 +131,7 @@ class PlaylistsService {
 
 	// Playlist Song Activities Service
 	async addPlaylistSongActivity(playlistId, songId, userId, action) {
-		const id = `playlist-song-activity-${nanoid(16)}`;
+		const id = `playlist-${nanoid(16)}`;
 		const time = new Date().toISOString();
 
 		const query = {

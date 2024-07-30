@@ -28,6 +28,7 @@ const collaborations = require("./api/collaborations");
 const CollaborationsService = require("./services/postgres/CollaborationsService");
 const CollaborationsValidator = require("./validator/collaborations");
 
+const ServerLog = require("./services/server/LogService");
 const ClientError = require("./exceptions/ClientError");
 
 const createServer = () => {
@@ -140,6 +141,22 @@ const handleClientError = server => {
 	});
 };
 
+const handleServerLog = server => {
+	const serverLog = new ServerLog(server);
+
+	if (process.env.NODE_ENV !== "production") {
+		server.ext("onRequest", (request, h) => {
+			serverLog.ServerRequestLog(request);
+			return h.continue;
+		});
+
+		server.ext("onPreResponse", (request, h) => {
+			serverLog.ServerResponseLog(request, h);
+			return h.continue;
+		});
+	}
+};
+
 const startServer = async () => {
 	const server = createServer();
 
@@ -147,9 +164,10 @@ const startServer = async () => {
 	await registerPlugins(server);
 
 	handleClientError(server);
+	handleServerLog(server);
 
 	await server.start();
-	console.log(`Server running on ${server.info.uri}`);
+	console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
 startServer();
