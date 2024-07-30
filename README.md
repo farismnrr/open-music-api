@@ -7,23 +7,20 @@
 #### 1. Install on Ubuntu
 
 ```bash
-wget https://storage.googleapis.com/farismnrr-gclouds.appspot.com/requirements-install/ubuntu.sh
-chmod +x ubuntu.sh
-./ubuntu.sh
+chmod +x install-ubuntu.sh
+./install-ubuntu.sh
 ```
 
 #### 2. Install on Debian
 
 ```bash
-wget https://storage.googleapis.com/farismnrr-gclouds.appspot.com/requirements-install/debian.sh
-chmod +x debian.sh
-./debian.sh
+chmod +x install-debian.sh
+./install-ubuntu.sh
 ```
 
 ---
 
 ## How to Run Program
-
 
 #### 1. Check `.env.example` for required environment variables.
 

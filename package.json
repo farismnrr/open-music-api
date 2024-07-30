@@ -31,7 +31,10 @@
 		"api",
 		"restful",
 		"server",
-		"postgres"
+		"postgres",
+		"music",
+		"open-music",
+		"jwt"
 	],
 	"devDependencies": {
 		"@types/bun": "latest",
