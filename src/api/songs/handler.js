@@ -3,6 +3,7 @@ class SongsHandler {
 		this._service = service;
 		this._validator = validator;
 
+		// Song Binding
 		this.postSongHandler = this.postSongHandler.bind(this);
 		this.getSongsHandler = this.getSongsHandler.bind(this);
 		this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
@@ -12,6 +13,7 @@ class SongsHandler {
 
 	async postSongHandler(request, h) {
 		this._validator.validateSongPayload(request.payload);
+
 		const { title, year, genre, performer, duration, albumId } = request.payload;
 		const songId = await this._service.addSong({
 			title,
@@ -25,7 +27,6 @@ class SongsHandler {
 		return h
 			.response({
 				status: "success",
-				message: "Song berhasil ditambahkan",
 				data: {
 					songId
 				}
@@ -35,7 +36,8 @@ class SongsHandler {
 
 	async getSongsHandler(request, h) {
 		const { title, performer } = request.query;
-		const songs = await this._service.getSongs(title, performer);
+		const songs = await this._service.getSongs({ title, performer });
+
 		return h
 			.response({
 				status: "success",
@@ -49,6 +51,7 @@ class SongsHandler {
 	async getSongByIdHandler(request, h) {
 		const { id } = request.params;
 		const song = await this._service.getSongById(id);
+
 		return h
 			.response({
 				status: "success",
@@ -61,12 +64,23 @@ class SongsHandler {
 
 	async putSongByIdHandler(request, h) {
 		this._validator.validateSongPayload(request.payload);
+
 		const { id } = request.params;
-		await this._service.editSongById(id, request.payload);
+		const { title, year, genre, performer, duration, albumId } = request.payload;
+
+		await this._service.editSongById(id, {
+			title,
+			year,
+			genre,
+			performer,
+			duration,
+			albumId
+		});
+
 		return h
 			.response({
 				status: "success",
-				message: "Song berhasil diubah"
+				message: "Lagu berhasil diperbarui"
 			})
 			.code(200);
 	}
@@ -74,10 +88,11 @@ class SongsHandler {
 	async deleteSongByIdHandler(request, h) {
 		const { id } = request.params;
 		await this._service.deleteSongById(id);
+
 		return h
 			.response({
 				status: "success",
-				message: "Song berhasil dihapus"
+				message: "Lagu berhasil dihapus"
 			})
 			.code(200);
 	}

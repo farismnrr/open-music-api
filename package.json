@@ -1,29 +1,75 @@
 {
 	"name": "open-music-api",
+	"author": "farismnrr",
+	"license": "ISC",
+<<<<<<< HEAD
+	"version": "2.0",
+=======
+	"version": "1.0",
+>>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
+	"description": "A back-end API for managing music data, built with Node.js and Hapi framework.",
 	"module": "server.js",
+	"main": "src/server.js",
 	"type": "commonjs",
 	"scripts": {
-		"build:local": "npm install && bun run copy-env && bun run migrate up && bun run start:dev",
-		"build:server": "npm install && bun run copy-env && echo HOST=0.0.0.0 > .env.production && bun run migrate up && sudo npm i -g pm2 && pm2 start bun --name \"notes-app-back-end\" -- run start:prod",
-		"start": "node src/server.js",
+<<<<<<< HEAD
+		"build": "npm install && bun run copy-env && bun run generate-token && bun run migrate up",
+		"build:local": "npm run build && bun run start:dev",
+		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
+		"build:docker": "docker build -t farismnrr/open-music:2.0 . && bun run start:docker",
+		"start": "bun run src/server.js",
 		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
 		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
+		"start:docker": "npm run build && docker run -d -p 5000:5000 --name open-music farismnrr/open-music:2.0",
+=======
+		"build": "npm install && bun run copy-env && bun run migrate up",
+		"build:local": "npm run build && bun run start:dev",
+		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
+		"build:docker": "docker build -t farismnrr/open-music:1.0 . && bun run start:docker",
+		"start": "bun run src/server.js",
+		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
+		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
+		"start:docker": "npm run build && docker run -d -p 5000:5000 --name open-music farismnrr/open-music:1.0",
+>>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
 		"copy-env": "bun -e \"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
+		"generate-token": "bun run src/tokenize/TokenGenerator.js",
 		"migrate": "node-pg-migrate"
 	},
+	"keywords": [
+		"notes",
+		"app",
+		"back-end",
+		"nodejs",
+		"bun",
+		"hapi",
+		"javascript",
+		"typescript",
+		"api",
+		"restful",
+		"server",
+		"postgres",
+		"music",
+<<<<<<< HEAD
+		"open-music",
+		"jwt"
+=======
+		"open-music"
+>>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
+	],
 	"devDependencies": {
 		"@types/bun": "latest",
-		"@types/pg": "^8.11.6",
 		"eslint": "^9.7.0",
 		"nodemon": "^3.1.4",
-		"prettier": "^3.3.3"
+		"prettier": "^3.3.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	},
 	"dependencies": {
 		"@hapi/hapi": "^21.3.10",
-		"bun": "^1.1.20",
+		"@hapi/jwt": "^3.2.0",
+		"bcrypt": "^5.1.1",
+		"bun": "^1.1.18",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.4.5",
 		"joi": "^17.13.3",

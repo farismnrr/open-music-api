@@ -1,16 +1,13 @@
-const process = require("process");
-
-class RequestService {
+class LogService {
 	constructor(server) {
 		this._server = server;
 	}
 
-	onRequest(request, h) {
+	ServerRequestLog(request) {
 		request.plugins.startTime = process.hrtime();
-		return h.continue;
 	}
 
-	onPreResponse(request, h) {
+	ServerResponseLog(request, h) {
 		const start = request.plugins.startTime;
 		const end = process.hrtime(start);
 		const responseTimeNs = end[0] * 1e9 + end[1];
@@ -35,22 +32,43 @@ class RequestService {
 			unit = "s";
 		} else {
 			responseTime = responseTimeNs / 1e12;
-			unit = "minutes";
+			unit = "Ms";
 		}
 
 		const response = request.response;
-		const statusCode = response.isBoom
-			? response.output.statusCode
-			: response.statusCode;
+		const statusCode = response.isBoom ? response.output.statusCode : response.statusCode;
 
 		console.log(
-			`[ Node - Hapi ] Code: ${statusCode} | Time: ${responseTime
+			`[ NodeJS - Hapi ] Code: ${statusCode} | Time: ${responseTime
 				.toFixed()
 				.padStart(3, " ")}${unit} | ${paddedMethod}\t${request.path}`
 		);
 
-		return h.continue;
+		if (response.isBoom && response.output.statusCode === 404) {
+			return h
+				.response(
+					`<!DOCTYPE html>
+						<html lang="en">
+						<head>
+							<meta charset="UTF-8">
+							<meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<title>404 Not Found</title>
+							<style>
+								body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+								h1 { color: #ff6347; }
+								p { font-size: 22px; }
+							</style>
+						</head>
+						<body>
+							<h1>404 Halaman tidak ditemukan</h1>
+							<p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
+						</body>
+						</html>
+					`
+				)
+				.code(404);
+		}
 	}
 }
 
-module.exports = RequestService;
+module.exports = LogService;
