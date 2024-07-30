@@ -2,17 +2,12 @@
 	"name": "open-music-api",
 	"author": "farismnrr",
 	"license": "ISC",
-<<<<<<< HEAD
 	"version": "2.0",
-=======
-	"version": "1.0",
->>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
 	"description": "A back-end API for managing music data, built with Node.js and Hapi framework.",
 	"module": "server.js",
 	"main": "src/server.js",
 	"type": "commonjs",
 	"scripts": {
-<<<<<<< HEAD
 		"build": "npm install && bun run copy-env && bun run generate-token && bun run migrate up",
 		"build:local": "npm run build && bun run start:dev",
 		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
@@ -21,16 +16,6 @@
 		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
 		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
 		"start:docker": "npm run build && docker run -d -p 5000:5000 --name open-music farismnrr/open-music:2.0",
-=======
-		"build": "npm install && bun run copy-env && bun run migrate up",
-		"build:local": "npm run build && bun run start:dev",
-		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
-		"build:docker": "docker build -t farismnrr/open-music:1.0 . && bun run start:docker",
-		"start": "bun run src/server.js",
-		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
-		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
-		"start:docker": "npm run build && docker run -d -p 5000:5000 --name open-music farismnrr/open-music:1.0",
->>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
 		"copy-env": "bun -e \"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
 		"generate-token": "bun run src/tokenize/TokenGenerator.js",
 		"migrate": "node-pg-migrate"
@@ -49,12 +34,8 @@
 		"server",
 		"postgres",
 		"music",
-<<<<<<< HEAD
 		"open-music",
 		"jwt"
-=======
-		"open-music"
->>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
 	],
 	"devDependencies": {
 		"@types/bun": "latest",

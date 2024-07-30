@@ -19,12 +19,9 @@ RUN sed -i 's/^PGHOST=.*/PGHOST=172.17.0.1/' .env.example
 # Menjalankan perintah copy-env
 RUN npm run copy-env
 
-<<<<<<< HEAD
 # Menjalankan perintah generate-token
 RUN npm run generate-token
 
-=======
->>>>>>> 25566a277b9d002f7984422b917eaa1a5ffdb3b0
 # Membuat file .env.production
 RUN echo HOST=0.0.0.0 > .env.production
 
