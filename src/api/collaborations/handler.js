@@ -3,6 +3,10 @@ class CollaborationsHandler {
 		this._collaborationsService = collaborationsService;
 		this._playlistsService = playlistsService;
 		this._validator = validator;
+
+		// Collaboration Binding
+		this.postCollaborationHandler = this.postCollaborationHandler.bind(this);
+		this.deleteCollaborationHandler = this.deleteCollaborationHandler.bind(this);
 	}
 
 	async postCollaborationHandler(request, h) {

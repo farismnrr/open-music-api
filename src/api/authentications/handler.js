@@ -4,6 +4,11 @@ class AuthenticationsHandler {
 		this._usersService = usersService;
 		this._tokenManager = tokenManager;
 		this._validator = validator;
+
+		// Authentication Binding
+		this.postAuthenticationHandler = this.postAuthenticationHandler.bind(this);
+		this.putAuthenticationHandler = this.putAuthenticationHandler.bind(this);
+		this.deleteAuthenticationHandler = this.deleteAuthenticationHandler.bind(this);
 	}
 
 	async postAuthenticationHandler(request, h) {

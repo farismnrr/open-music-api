@@ -2,6 +2,19 @@ class PlaylistsHandler {
 	constructor(playlistsService, validator) {
 		this._playlistsService = playlistsService;
 		this._validator = validator;
+
+		// Playlist Binding
+		this.postPlaylistHandler = this.postPlaylistHandler.bind(this);
+		this.getPlaylistsHandler = this.getPlaylistsHandler.bind(this);
+		this.deletePlaylistByIdHandler = this.deletePlaylistByIdHandler.bind(this);
+
+		// Playlist Song Binding
+		this.postPlaylistSongHandler = this.postPlaylistSongHandler.bind(this);
+		this.getPlaylistSongByIdHandler = this.getPlaylistSongByIdHandler.bind(this);
+		this.deletePlaylistSongHandler = this.deletePlaylistSongHandler.bind(this);
+
+		// Playlist Song Activities Binding
+		this.getPlaylistSongActivitiesHandler = this.getPlaylistSongActivitiesHandler.bind(this);
 	}
 
 	// Playlist Handler
