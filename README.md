@@ -7,15 +7,15 @@
 #### 1. Install on Ubuntu
 
 ```bash
-chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
+source ~/.bashrc
 ```
 
 #### 2. Install on Debian
 
 ```bash
-chmod +x install-debian.sh
 ./install-debian.sh
+source ~/.bashrc
 ```
 
 ---
