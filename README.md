@@ -1,4 +1,4 @@
-# notes-app-back-end
+# Open Music API
 
 ---
 
@@ -15,7 +15,7 @@ chmod +x install-ubuntu.sh
 
 ```bash
 chmod +x install-debian.sh
-./install-ubuntu.sh
+./install-debian.sh
 ```
 
 ---
