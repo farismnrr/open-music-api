@@ -7,14 +7,14 @@
 #### 1. Install on Ubuntu
 
 ```bash
-chmod +x ubuntu.sh
+chmod +x install-ubuntu.sh
 ./ubuntu.sh
 ```
 
 #### 2. Install on Debian
 
 ```bash
-chmod +x debian.sh
+chmod +x install-debian.sh
 ./debian.sh
 ```
 
