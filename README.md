@@ -9,6 +9,11 @@
 ```bash
 chmod +x install-ubuntu.sh
 ./install-ubuntu.sh
+```
+
+Update `.bashrc`
+
+```bash
 source ~/.bashrc
 ```
 
@@ -17,6 +22,11 @@ source ~/.bashrc
 ```bash
 chmod +x install-debian.sh
 ./install-debian.sh
+```
+
+Update `.bashrc`
+
+```bash
 source ~/.bashrc
 ```
 
