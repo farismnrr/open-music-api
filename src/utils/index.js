@@ -20,21 +20,6 @@ const mapSongModel = ({
 	updatedAt: updated_at
 });
 
-const mapAlbumModel = ({ id, name, year, created_at, updated_at }) => ({
-	id,
-	name,
-	year,
-	createdAt: created_at,
-	updatedAt: updated_at
-});
-
-const mapPlaylistModel = ({ id, name, owner, created_at, updated_at }) => ({
-	id,
-	name,
-	owner,
-	createdAt: created_at,
-	updatedAt: updated_at
-});
 
 const mapUserModel = ({ id, username, password, fullname, created_at, updated_at }) => ({
 	id,
@@ -45,8 +30,10 @@ const mapUserModel = ({ id, username, password, fullname, created_at, updated_at
 	updatedAt: updated_at
 });
 
-const mapAuthModel = ({ token, created_at, updated_at }) => ({
-	token,
+const mapAlbumModel = ({ id, name, year, created_at, updated_at }) => ({
+	id,
+	name,
+	year,
 	createdAt: created_at,
 	updatedAt: updated_at
 });
@@ -55,6 +42,14 @@ const mapCollaborationModel = ({ id, playlist_id, user_id, created_at, updated_a
 	id,
 	playlistId: playlist_id,
 	userId: user_id,
+	createdAt: created_at,
+	updatedAt: updated_at
+});
+
+const mapPlaylistModel = ({ id, name, owner, created_at, updated_at }) => ({
+	id,
+	name,
+	owner,
 	createdAt: created_at,
 	updatedAt: updated_at
 });
@@ -74,8 +69,6 @@ const mapPlaylistSongActivityModel = ({
 	user_id,
 	action,
 	time,
-	created_at,
-	updated_at
 }) => ({
 	id,
 	playlistId: playlist_id,
@@ -83,17 +76,31 @@ const mapPlaylistSongActivityModel = ({
 	userId: user_id,
 	action,
 	time,
+});
+
+const mapPlaylistWithUsernameModel = ({ id, name, username, created_at, updated_at }) => ({
+	id,
+	name,
+	username,
 	createdAt: created_at,
 	updatedAt: updated_at
 });
 
+const mapPlaylistSongActivityWithUsernameModel = ({ username, title, action, time }) => ({
+	username,
+	title,
+	action,
+	time,
+});
+
 module.exports = {
 	mapSongModel,
-	mapAlbumModel,
-	mapPlaylistModel,
 	mapUserModel,
+	mapAlbumModel,
 	mapCollaborationModel,
-	mapAuthModel,
+	mapPlaylistModel,
 	mapPlaylistSongModel,
-	mapPlaylistSongActivityModel
+	mapPlaylistSongActivityModel,
+	mapPlaylistWithUsernameModel,
+	mapPlaylistSongActivityWithUsernameModel
 };

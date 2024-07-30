@@ -143,7 +143,6 @@ const handleClientError = server => {
 
 const handleServerLog = server => {
 	const serverLog = new ServerLog(server);
-
 	if (process.env.NODE_ENV !== "production") {
 		server.ext("onRequest", (request, h) => {
 			serverLog.ServerRequestLog(request);

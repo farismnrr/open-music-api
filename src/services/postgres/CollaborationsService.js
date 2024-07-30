@@ -1,5 +1,6 @@
 const { nanoid } = require("nanoid");
 const { Pool } = require("pg");
+const { mapCollaborationModel } = require("../../utils");
 const { InvariantError } = require("../../exceptions/InvariantError");
 const { NotFoundError } = require("../../exceptions/NotFoundError");
 
@@ -9,51 +10,51 @@ class CollaborationsService {
 	}
 
 	async addCollaboration(playlistId, userId) {
-		const id = `collaboration-${nanoid(16)}`;
+		const id = `collaboration-${nanoid()}`;
 		const userQuery = {
-			text: "SELECT * FROM users where id = $1",
+			text: "SELECT id FROM users where id = $1",
 			values: [userId]
 		};
 
-		const user = await this._pool.query(userQuery);
-		if (!user.rowCount) {
-			throw new NotFoundError("User not found.");
+		const userResult = await this._pool.query(userQuery);
+		if (!userResult.rowCount) {
+			throw new NotFoundError("User tidak ditemukan.");
 		}
 
-		const createdAt = new Date().toISOString();
-		const query = {
-			text: "INSERT INTO collaborations VALUES($1, $2, $3, $4, $4) RETURNING id",
-			values: [id, playlistId, userId, createdAt]
+		const collaborationQuery = {
+			text: "INSERT INTO collaborations VALUES($1, $2, $3) RETURNING id",
+			values: [id, playlistId, userId]
 		};
 
-		const result = await this._pool.query(query);
+		const collaborationResult = await this._pool.query(collaborationQuery);
+		if (!collaborationResult.rowCount) {
+			throw new InvariantError("Gagal menambahkan collaboration.");
+		}
 
-		return result.rows[0].id;
+		return mapCollaborationModel(collaborationResult.rows[0]).id;
 	}
 
 	async deleteCollaboration(playlistId, userId) {
-		const query = {
-			text: "DELETE FROM collaborations WHERE playlist_id = $1 AND user_id = $2 RETURNING id",
+		const collaborationQuery = {
+			text: "DELETE FROM collaborations WHERE playlist_id = $1 AND user_id = $2",
 			values: [playlistId, userId]
 		};
 
-		const result = await this._pool.query(query);
-
-		if (!result.rowCount) {
-			throw new InvariantError("Failed to delete collaboration.");
+		const collaborationResult = await this._pool.query(collaborationQuery);
+		if (!collaborationResult.rowCount) {
+			throw new InvariantError("Gagal menghapus collaboration.");
 		}
 	}
 
 	async verifyCollaborator(playlistId, userId) {
-		const query = {
-			text: "SELECT * FROM collaborations WHERE playlist_id = $1 AND user_id = $2",
+		const collaborationQuery = {
+			text: "SELECT id FROM collaborations WHERE playlist_id = $1 AND user_id = $2",
 			values: [playlistId, userId]
 		};
 
-		const result = await this._pool.query(query);
-
-		if (!result.rowCount) {
-			throw new InvariantError("Failed to verify collaboration.");
+		const collaborationResult = await this._pool.query(collaborationQuery);
+		if (!collaborationResult.rowCount) {
+			throw new InvariantError("Gagal memverifikasi collaboration.");
 		}
 	}
 }
