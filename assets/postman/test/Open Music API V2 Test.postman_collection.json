@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "71b01bb7-11e2-41cc-87b3-a273c5cde450",
+		"_postman_id": "f077b137-e258-4e6e-bf2b-78a6db3b7d4e",
 		"name": "Open Music API V2 Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30262904"
@@ -453,8 +453,10 @@
 									"\r",
 									"pm.test('when GET detail albums', () => {\r",
 									"    const albumId = pm.environment.get('albumId');\r",
+									"    const url = pm.environment.get('url');\r",
 									"    const port = pm.environment.get('port');\r",
-									"    pm.sendRequest(`http://localhost:${port}/albums/${albumId}`, (error, response) => {\r",
+									"\r",
+									"    pm.sendRequest(`http://${url}:${port}/albums/${albumId}`, (error, response) => {\r",
 									"        if (!error) {\r",
 									"            pm.test('it should response with revised content', () => {\r",
 									"                pm.expect(response.code).to.equal(200);\r",
@@ -470,6 +472,16 @@
 									"        }\r",
 									"    });\r",
 									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
 									""
 								],
 								"type": "text/javascript",
@@ -585,7 +597,9 @@
 									"pm.test('when GET detail albums', () => {\r",
 									"    const albumId = pm.environment.get('albumId');\r",
 									"    const port = pm.environment.get('port');\r",
-									"    pm.sendRequest(`http://localhost:${port}/albums/${albumId}`, (error, response) => {\r",
+									"    const url = pm.environment.get('url');\r",
+									"\r",
+									"    pm.sendRequest(`http://${url}:${port}/albums/${albumId}`, (error, response) => {\r",
 									"        if (!error) {\r",
 									"            pm.test('it should response with not found', () => {\r",
 									"                pm.expect(response.code).to.equal(404);\r",
@@ -1214,7 +1228,9 @@
 									"pm.test('when GET detail song', () => {\r",
 									"    const songId = pm.environment.get('songId');\r",
 									"    const port = pm.environment.get('port');\r",
-									"    pm.sendRequest(`http://localhost:${port}/songs/${songId}`, (error, response) => {\r",
+									"    const url = pm.environment.get('url');\r",
+									"\r",
+									"    pm.sendRequest(`http://${url}:${port}/songs/${songId}`, (error, response) => {\r",
 									"        if (!error) {\r",
 									"            pm.test('it should response with revised content', () => {\r",
 									"                pm.expect(response.code).to.equal(200);\r",
@@ -1358,7 +1374,8 @@
 									"pm.test('when GET detail song', () => {\r",
 									"    const songId = pm.environment.get('songId');\r",
 									"    const port = pm.environment.get('port');\r",
-									"    pm.sendRequest(`http://localhost:${port}/songs/${songId}`, (error, response) => {\r",
+									"    const url = pm.environment.get('url');\r",
+									"    pm.sendRequest(`http://${url}:${port}/songs/${songId}`, (error, response) => {\r",
 									"        if (!error) {\r",
 									"            pm.test('it should response with not found', () => {\r",
 									"                pm.expect(response.code).to.equal(404);\r",
@@ -2541,10 +2558,11 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"const url = pm.environment.get('url');\r",
 									"const port = pm.environment.get('port');\r",
 									"\r",
 									"const requestParams = {\r",
-									"  url: `http://localhost:${port}/users`,\r",
+									"  url: `http://${url}:${port}/users`,\r",
 									"  method: 'POST',\r",
 									"  header: {\r",
 									"    'Content-Type': 'application/json',\r",
