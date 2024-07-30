@@ -89,8 +89,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums",
 							"host": [
 								"{{url}}"
 							],
@@ -150,8 +149,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums",
 							"host": [
 								"{{url}}"
 							],
@@ -200,8 +198,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -256,8 +253,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -350,8 +346,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -410,8 +405,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -490,8 +484,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -541,8 +534,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -604,8 +596,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -705,8 +696,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -776,8 +766,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -826,8 +815,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -885,8 +873,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -935,8 +922,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -994,8 +980,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1090,8 +1075,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1160,8 +1144,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -1253,8 +1236,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1304,8 +1286,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/xxx",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/xxx",
 							"host": [
 								"{{url}}"
 							],
@@ -1386,8 +1367,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1436,8 +1416,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/albums",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/albums",
 									"host": [
 										"{{url}}"
 									],
@@ -1477,8 +1456,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/albums",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/albums",
 									"host": [
 										"{{url}}"
 									],
@@ -1548,8 +1526,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -1617,8 +1594,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs",
 							"host": [
 								"{{url}}"
 							],
@@ -1674,8 +1650,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumId}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumId}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1732,8 +1707,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/albums/{{albumIdWithNoSongs}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/albums/{{albumIdWithNoSongs}}",
 							"host": [
 								"{{url}}"
 							],
@@ -1792,8 +1766,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/songs",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/songs",
 									"host": [
 										"{{url}}"
 									],
@@ -1843,8 +1816,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/songs",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/songs",
 									"host": [
 										"{{url}}"
 									],
@@ -1894,8 +1866,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/songs",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/songs",
 									"host": [
 										"{{url}}"
 									],
@@ -1945,8 +1916,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{url}}:{{port}}/songs",
-									"protocol": "http",
+									"raw": "{{url}}:{{port}}/songs",
 									"host": [
 										"{{url}}"
 									],
@@ -2007,8 +1977,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs?title=cint",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs?title=cint",
 							"host": [
 								"{{url}}"
 							],
@@ -2073,8 +2042,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs?performer=chris",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs?performer=chris",
 							"host": [
 								"{{url}}"
 							],
@@ -2140,8 +2108,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs?title=kupu&performer=peter",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs?title=kupu&performer=peter",
 							"host": [
 								"{{url}}"
 							],
@@ -2200,8 +2167,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songIdA}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songIdA}}",
 							"host": [
 								"{{url}}"
 							],
@@ -2251,8 +2217,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songIdB}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songIdB}}",
 							"host": [
 								"{{url}}"
 							],
@@ -2302,8 +2267,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songIdC}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songIdC}}",
 							"host": [
 								"{{url}}"
 							],
@@ -2353,8 +2317,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}:{{port}}/songs/{{songIdD}}",
-							"protocol": "http",
+							"raw": "{{url}}:{{port}}/songs/{{songIdD}}",
 							"host": [
 								"{{url}}"
 							],
