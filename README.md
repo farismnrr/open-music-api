@@ -8,14 +8,14 @@
 
 ```bash
 chmod +x install-ubuntu.sh
-./ubuntu.sh
+./install-ubuntu.sh
 ```
 
 #### 2. Install on Debian
 
 ```bash
 chmod +x install-debian.sh
-./debian.sh
+./install-ubuntu.sh
 ```
 
 ---
