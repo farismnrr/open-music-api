@@ -47,25 +47,24 @@ class LogService {
 		if (response.isBoom && response.output.statusCode === 404) {
 			return h
 				.response(
+					`<!DOCTYPE html>
+						<html lang="en">
+						<head>
+							<meta charset="UTF-8">
+							<meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<title>404 Not Found</title>
+							<style>
+								body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+								h1 { color: #ff6347; }
+								p { font-size: 22px; }
+							</style>
+						</head>
+						<body>
+							<h1>404 Halaman tidak ditemukan</h1>
+							<p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
+						</body>
+						</html>
 					`
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>404 Not Found</title>
-                  <style>
-                      body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                      h1 { color: #ff6347; }
-                      p { font-size: 22px; }
-                  </style>
-              </head>
-              <body>
-                  <h1>404 Halaman tidak ditemukan</h1>
-                  <p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
-              </body>
-              </html>
-          `
 				)
 				.code(404);
 		}
