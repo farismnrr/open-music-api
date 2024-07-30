@@ -44,8 +44,6 @@ alias docker_remove='sudo docker rmi -f $(sudo docker images -q)'
 alias docker_stop='sudo docker stop $(docker ps -q) && sudo docker rm -f $(docker ps -a -q)'
 alias pm2_stop='pm2 stop all && pm2 delete all || sudo pm2 stop all && sudo pm2 delete all'" >> ~/.bashrc
 
-source ~/.bashrc
-
 # Install postgresql by Docker
 sudo docker run --name postgres-sql -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
 sudo docker exec -it postgres-sql psql -U postgres -c "CREATE DATABASE postgres"
