@@ -8,8 +8,9 @@
 	"main": "src/server.js",
 	"type": "commonjs",
 	"scripts": {
-		"build:local": "npm install && bun run copy-env && bun run migrate up && bun run start:dev",
-		"build:server": "npm install && bun run copy-env && echo HOST=0.0.0.0 > .env.production && bun run migrate up && sudo bun i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
+		"build": "npm install && bun run copy-env && bun run migrate up",
+		"build:local": "bun run build && bun run start:dev",
+		"build:server": "bun run build && echo HOST=0.0.0.0 > .env.production && sudo bun i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
 		"build:docker": "docker build -t farismnrr/open-music:1.0 . && bun run start:docker",
 		"start": "bun run src/server.js",
 		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
