@@ -20,14 +20,14 @@ class CollaborationsHandler {
 			userId
 		);
 
-		const response = h.response({
-			status: "success",
-			data: {
-				collaborationId
-			}
-		});
-		response.code(201);
-		return response;
+		return h
+			.response({
+				status: "success",
+				data: {
+					collaborationId
+				}
+			})
+			.code(201);
 	}
 
 	async deleteCollaborationHandler(request, h) {
@@ -38,12 +38,12 @@ class CollaborationsHandler {
 		await this._playlistsService.verifyPlaylistOwner(playlistId, credentialId);
 		await this._collaborationsService.deleteCollaboration(playlistId, userId);
 
-		const response = h.response({
-			status: "success",
-			message: "Collaboration deleted successfully"
-		});
-		response.code(200);
-		return response;
+		return h
+			.response({
+				status: "success",
+				message: "Kolaborasi berhasil dihapus"
+			})
+			.code(200);
 	}
 }
 
