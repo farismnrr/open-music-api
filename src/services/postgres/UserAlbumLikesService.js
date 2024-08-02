@@ -13,7 +13,7 @@ class UserAlbumLikesService {
 		await this._albumsService.getAlbumById(albumId);
 		await this.verifyUserLike(userId, albumId);
 
-		const id = `album-likes-${nanoid(16)}`;
+		const id = `album-likes-${nanoid()}`;
 		const query = {
 			text: "INSERT INTO user_album_likes VALUES($1, $2, $3) RETURNING id",
 			values: [id, userId, albumId]
