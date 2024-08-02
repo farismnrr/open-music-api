@@ -31,7 +31,6 @@ const CollaborationsService = require("./services/postgres/CollaborationsService
 const CollaborationsValidator = require("./validator/collaborations");
 
 const userAlbumLikes = require("./api/userAlbumLikes");
-const UserAlbumLikesService = require("./services/postgres/UserAlbumLikesService");
 
 const exportsModule = require("./api/exports");
 const ProducerService = require("./services/rabbitmq/ProducerService");
@@ -87,15 +86,14 @@ const externalPlugin = async server => {
 };
 
 const registerPlugins = async server => {
-	const albumsService = new AlbumsService();
 	const songsService = new SongsService();
 	const usersService = new UsersService();
 	const cacheService = new CacheService();
 	const authenticationsService = new AuthenticationsService();
 	const collaborationsService = new CollaborationsService();
+	const albumsService = new AlbumsService(cacheService);
 	const playlistsService = new PlaylistsService(songsService, collaborationsService);
 	const storageService = new StorageService(config.storage.location);
-	const userAlbumLikesService = new UserAlbumLikesService(albumsService, cacheService);
 
 	await server.register([
 		{
@@ -169,7 +167,7 @@ const registerPlugins = async server => {
 		{
 			plugin: userAlbumLikes,
 			options: {
-				service: userAlbumLikesService
+				service: albumsService
 			}
 		}
 	]);
