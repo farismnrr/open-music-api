@@ -11,11 +11,10 @@ class AlbumsService {
 
 	async addAlbum({ name, year }) {
 		const id = `album-${nanoid(16)}`;
-		const createdAt = new Date().toISOString();
 
 		const query = {
-			text: "INSERT INTO albums VALUES($1, $2, $3, $4, $4) RETURNING id",
-			values: [id, name, year, createdAt]
+			text: "INSERT INTO albums VALUES($1, $2, $3, $4) RETURNING id",
+			values: [id, name, year, null]
 		};
 
 		const result = await this._pool.query(query);
@@ -57,10 +56,9 @@ class AlbumsService {
 	}
 
 	async editAlbumById(id, { name, year }) {
-		const updatedAt = new Date().toISOString();
 		const query = {
-			text: "UPDATE albums SET name=$1, year=$2, updated_at=$3 WHERE id=$4 RETURNING id",
-			values: [name, year, updatedAt, id]
+			text: "UPDATE albums SET name=$1, year=$2, cover=$3 WHERE id=$4 RETURNING id",
+			values: [name, year, null, id]
 		};
 
 		const result = await this._pool.query(query);
@@ -84,11 +82,9 @@ class AlbumsService {
 	}
 
 	async updateAlbumCoverUrl(id, url) {
-		const updatedAt = new Date().toISOString();
-
 		const query = {
-			text: "UPDATE albums SET cover = $2, updated_at = $3 WHERE id = $1",
-			values: [id, url, updatedAt]
+			text: "UPDATE albums SET cover = $2 WHERE id = $1",
+			values: [id, url]
 		};
 
 		const result = await this._pool.query(query);

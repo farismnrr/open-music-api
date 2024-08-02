@@ -12,6 +12,10 @@ exports.up = pgm => {
 			type: "INTEGER",
 			notNull: true
 		},
+		cover: {
+			type: "VARCHAR(100)",
+			default: null
+		},
 		created_at: {
 			type: "TIMESTAMP",
 			notNull: true,
@@ -27,4 +31,5 @@ exports.up = pgm => {
 
 exports.down = pgm => {
 	pgm.dropTable("albums");
+	pgm.dropColumn("albums", "cover");
 };

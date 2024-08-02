@@ -1,5 +1,5 @@
-const Hapi = require("@hapi/hapi");
 const Jwt = require("@hapi/jwt");
+const Hapi = require("@hapi/hapi");
 const Inert = require("@hapi/inert");
 const config = require("./utils/config.js");
 
@@ -207,7 +207,7 @@ const handleServerLog = server => {
 	}
 };
 
-const init = async () => {
+const startServer = async () => {
 	const server = createServer();
 
 	await externalPlugin(server);
@@ -216,7 +216,7 @@ const init = async () => {
 	handleServerLog(server);
 
 	await server.start();
-	console.log(`Server running on ${server.info.uri}`);
+	console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
-init();
+startServer();
