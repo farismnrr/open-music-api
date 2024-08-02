@@ -1,18 +1,23 @@
+require("dotenv").config();
 const path = require("path");
 
 const config = {
-	app: {
+	server: {
 		host: process.env.HOST,
 		port: process.env.PORT
 	},
 	storage: {
 		location: path.resolve(__dirname, "../../assets/uploads/images")
 	},
-	rabbitMq: {
+	rabbitmq: {
 		server: process.env.RABBITMQ_SERVER
 	},
 	redis: {
-		host: process.env.REDIS_SERVER
+		server: process.env.REDIS_SERVER
+	},
+	jwt: {
+		secret: process.env.ACCESS_TOKEN_KEY,
+		age: process.env.ACCESS_TOKEN_AGE
 	}
 };
 
