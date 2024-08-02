@@ -79,6 +79,21 @@ const mapUserAlbumLikesModel = ({ id, user_id, album_id, created_at, updated_at 
 	updatedAt: updated_at
 });
 
+const mapPlaylistsWithUsernameModel = ({ id, name, username, created_at, updated_at }) => ({
+	id,
+	name,
+	username,
+	createdAt: created_at,
+	updatedAt: updated_at
+});
+
+const mapPlaylistSongActivitiesWithUsernameModel = ({ username, title, action, time }) => ({
+	username,
+	title,
+	action,
+	time,
+});
+
 module.exports = {
 	mapSongsModel,
 	mapUsersModel,
@@ -87,5 +102,7 @@ module.exports = {
 	mapPlaylistsModel,
 	mapPlaylistSongsModel,
 	mapPlaylistSongActivitiesModel,
-	mapUserAlbumLikesModel
+	mapUserAlbumLikesModel,
+	mapPlaylistsWithUsernameModel,
+	mapPlaylistSongActivitiesWithUsernameModel
 };
