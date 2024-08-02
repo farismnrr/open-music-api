@@ -11,7 +11,6 @@ class UsersService {
 		this._pool = new Pool();
 	}
 
-	// User Service
 	async addUser({ username, password, fullname }) {
 		await this.verifyUsername(username);
 
@@ -60,7 +59,6 @@ class UsersService {
 		}
 		return user.id;
 	}
-	// End User Service
 }
 
 module.exports = UsersService;

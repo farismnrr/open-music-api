@@ -1,6 +1,7 @@
 const { Pool } = require("pg");
 const { nanoid } = require("nanoid");
 const { InvariantError } = require("../../exceptions/InvariantError");
+const { mapUserAlbumLikesModel } = require("../../utils");
 
 class UserAlbumLikesService {
 	constructor(albumsService, cacheService) {
@@ -13,73 +14,67 @@ class UserAlbumLikesService {
 		await this._albumsService.getAlbumById(albumId);
 		await this.verifyUserLike(userId, albumId);
 
-		const id = `album-likes-${nanoid()}`;
-		const query = {
+		const id = `album-${nanoid()}`;
+		const albumLikeQuery = {
 			text: "INSERT INTO user_album_likes VALUES($1, $2, $3) RETURNING id",
 			values: [id, userId, albumId]
 		};
 
-		const result = await this._pool.query(query);
-		await this._cacheService.delete(`album-likes:${albumId}`);
+		const albumLikeResult = await this._pool.query(albumLikeQuery);
+		await this._cacheService.delete(`album:${albumId}`);
 
-		if (!result.rowCount) {
-			throw new InvariantError("Failed to add like to the album.");
+		if (!albumLikeResult.rowCount) {
+			throw new InvariantError("Gagal menambahkan like ke album.");
 		}
 	}
 
 	async getTotalLikes(albumId) {
 		try {
-			const result = await this._cacheService.get(`album-likes:${albumId}`);
+			const albumLikeResult = JSON.parse(await this._cacheService.get(`album:${albumId}`));
 			return {
-				data: JSON.parse(result),
+				data: albumLikeResult,
 				source: "cache"
 			};
 		} catch (error) {
-			const query = {
+			const albumLikeQuery = {
 				text: "SELECT COUNT(*) FROM user_album_likes WHERE album_id = $1",
 				values: [albumId]
 			};
 
-			const result = await this._pool.query(query);
-			await this._cacheService.set(`album-likes:${albumId}`, result.rows[0].count);
-
-			let data = 0;
-			if (result.rows[0].count) {
-				data = parseInt(result.rows[0].count, 10);
-			}
+			const albumLikeResult = await this._pool.query(albumLikeQuery);
+			const albumLikeCountResult = mapUserAlbumLikesModel(albumLikeResult.rows[0]).count;
+			await this._cacheService.set(`album:${albumId}`, albumLikeCountResult);
 
 			return {
-				data,
+				data: parseInt(albumLikeCountResult, 10) || 0,
 				source: "database"
 			};
 		}
 	}
 
 	async deleteLike(userId, albumId) {
-		const query = {
+		const albumLikeQuery = {
 			text: "DELETE FROM user_album_likes WHERE user_id = $1 AND album_id = $2 RETURNING id",
 			values: [userId, albumId]
 		};
 
-		const result = await this._pool.query(query);
+		const albumLikeResult = await this._pool.query(albumLikeQuery);
+		await this._cacheService.delete(`album:${albumId}`);
 
-		await this._cacheService.delete(`album-likes:${albumId}`);
-
-		if (!result.rows.length) {
-			throw new InvariantError("Failed to delete like from album.");
+		if (!albumLikeResult.rowCount) {
+			throw new InvariantError("Gagal menghapus like dari album.");
 		}
 	}
 
 	async verifyUserLike(userId, albumId) {
-		const query = {
-			text: "SELECT * FROM user_album_likes WHERE user_id = $1 AND album_id = $2",
+		const albumLikeQuery = {
+			text: "SELECT id, user_id, album_id FROM user_album_likes WHERE user_id = $1 AND album_id = $2",
 			values: [userId, albumId]
 		};
 
-		const result = await this._pool.query(query);
-
-		if (result.rowCount > 0) {
-			throw new InvariantError("Album is already liked.");
+		const albumLikeResult = await this._pool.query(albumLikeQuery);
+		if (albumLikeResult.rowCount) {
+			throw new InvariantError("Album sudah pernah dilike.");
 		}
 	}
 }

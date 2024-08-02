@@ -71,12 +71,8 @@ const mapPlaylistSongActivitiesModel = ({ id, playlist_id, song_id, user_id, act
 	time
 });
 
-const mapUserAlbumLikesModel = ({ id, user_id, album_id, created_at, updated_at }) => ({
-	id,
-	userId: user_id,
-	albumId: album_id,
-	createdAt: created_at,
-	updatedAt: updated_at
+const mapUserAlbumLikesModel = ({ count }) => ({
+	count
 });
 
 const mapPlaylistsWithUsernameModel = ({ id, name, username, created_at, updated_at }) => ({
