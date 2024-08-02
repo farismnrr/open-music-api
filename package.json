@@ -12,12 +12,12 @@
 		"build:local": "npm run build && bun run start:dev",
 		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
 		"build:docker": "npm run build && docker build -t farismnrr/open-music:3.0 .",
-		"start": "bun run src/producer/server.js",
-		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/producer/server.js\"",
-		"start:prod": "cross-env NODE_ENV=production bun run src/producer/server.js",
+		"start": "bun run src/server.js",
+		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
+		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
 		"migrate": "node-pg-migrate",
 		"copy-env": "bun -e \"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
-		"generate-token": "bun run src/producer/TokenGenerator.js"
+		"generate-token": "bun run src/tokenize/TokenGenerator.js"
 	},
 	"keywords": [
 		"app",
@@ -39,26 +39,27 @@
 		"open-music"
 	],
 	"devDependencies": {
+		"@types/bun": "latest",
 		"eslint": "^9.7.0",
 		"nodemon": "^3.1.4",
-		"prettier": "^3.3.2",
-		"@types/bun": "latest"
+		"prettier": "^3.3.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	},
 	"dependencies": {
-		"node-pg-migrate": "^7.5.2",
 		"@hapi/hapi": "^21.3.10",
 		"@hapi/inert": "^7.1.0",
 		"@hapi/jwt": "^3.2.0",
-		"cross-env": "^7.0.3",
 		"amqplib": "^0.10.4",
-		"dotenv": "^16.4.5",
-		"nanoid": "^3.3.7",
 		"bcrypt": "^5.1.1",
-		"redis": "^4.6.15",
+		"bun": "^1.1.21",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.4.5",
 		"joi": "^17.13.3",
-		"pg": "^8.12.0"
+		"nanoid": "^3.3.7",
+		"node-pg-migrate": "^7.5.2",
+		"pg": "^8.12.0",
+		"redis": "^4.6.15"
 	}
 }
