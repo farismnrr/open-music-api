@@ -2,7 +2,7 @@ const { Pool } = require("pg");
 const { nanoid } = require("nanoid");
 const { NotFoundError } = require("../../exceptions/NotFoundError");
 const { InvariantError } = require("../../exceptions/InvariantError");
-const { mapAlbumsModel } = require("../../utils");
+const { mapAlbumsModel, mapSongsModel } = require("../../utils");
 
 class AlbumsService {
 	constructor() {
@@ -10,7 +10,7 @@ class AlbumsService {
 	}
 
 	async addAlbum({ name, year }) {
-		const id = `album-${nanoid(16)}`;
+		const id = `album-${nanoid()}`;
 
 		const query = {
 			text: "INSERT INTO albums VALUES($1, $2, $3, $4) RETURNING id",
@@ -19,35 +19,32 @@ class AlbumsService {
 
 		const result = await this._pool.query(query);
 
-		if (!result.rows[0].id) {
-			throw new InvariantError("Failed to add album.");
+		if (!result.rowCount) {
+			throw new InvariantError("Gagal menambahkan album.");
 		}
 
-		return result.rows[0].id;
+		return mapAlbumsModel(result.rows[0]).id;
 	}
 
 	async getAlbumById(id) {
 		const albumQuery = {
-			text: "SELECT * FROM albums WHERE id=$1",
+			text: "SELECT id, name, year, cover FROM albums WHERE id=$1",
 			values: [id]
 		};
+
 		const albumResult = await this._pool.query(albumQuery);
-		if (!albumResult.rows.length) {
-			throw new NotFoundError("Album not found.");
+		if (!albumResult.rowCount) {
+			throw new NotFoundError("Album tidak ditemukan.");
 		}
 
+		const album = mapAlbumsModel(albumResult.rows[0]);
 		const songQuery = {
-			text: "SELECT * FROM songs WHERE album_id=$1",
-			values: [albumResult.rows[0].id]
+			text: "SELECT id, title, performer FROM songs WHERE album_id=$1",
+			values: [album.id]
 		};
-		const songResult = await this._pool.query(songQuery);
 
-		const album = albumResult.rows.map(mapAlbumsModel)[0];
-		const songs = songResult.rows.map(song => ({
-			id: song.id,
-			title: song.title,
-			performer: song.performer
-		}));
+		const songResult = await this._pool.query(songQuery);
+		const songs = songResult.rows.map(mapSongsModel);
 
 		return {
 			...album,
@@ -62,9 +59,8 @@ class AlbumsService {
 		};
 
 		const result = await this._pool.query(query);
-
-		if (!result.rows.length) {
-			throw new NotFoundError("Failed to update album. Id not found.");
+		if (!result.rowCount) {
+			throw new NotFoundError("Gagal memperbarui album.");
 		}
 	}
 
@@ -75,9 +71,8 @@ class AlbumsService {
 		};
 
 		const result = await this._pool.query(query);
-
-		if (!result.rows.length) {
-			throw new NotFoundError("Failed to delete album. Id not found.");
+		if (!result.rowCount) {
+			throw new NotFoundError("Gagal menghapus album.");
 		}
 	}
 
@@ -88,9 +83,8 @@ class AlbumsService {
 		};
 
 		const result = await this._pool.query(query);
-
 		if (!result.rowCount) {
-			throw new NotFoundError("Failed to add Album Cover. Id not found.");
+			throw new NotFoundError("Gagal menambahkan cover album.");
 		}
 	}
 }
