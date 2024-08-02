@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const Hapi = require("@hapi/hapi");
 const Jwt = require("@hapi/jwt");
 const Inert = require("@hapi/inert");
@@ -36,7 +34,7 @@ const CollaborationsValidator = require("./validator/collaborations");
 const userAlbumLikes = require("./api/userAlbumLikes");
 const UserAlbumLikesService = require("./services/postgres/UserAlbumLikesService");
 
-const _exports = require("./api/exports");
+const exportsModule = require("./api/exports");
 const ProducerService = require("./services/rabbitmq/ProducerService");
 const ExportsValidator = require("./validator/exports");
 
@@ -44,24 +42,14 @@ const uploads = require("./api/uploads");
 const StorageService = require("./services/storage/StorageService");
 const UploadsValidator = require("./validator/uploads");
 
+const logService = require("./services/log/LogService");
 const ClientError = require("./exceptions/ClientError");
 const CacheService = require("./services/redis/CacheService");
 
-const init = async () => {
-	const albumsService = new AlbumsService();
-	const songsService = new SongsService();
-	const usersService = new UsersService();
-	const cacheService = new CacheService();
-	const authenticationsService = new AuthenticationsService();
-	const collaborationsService = new CollaborationsService();
-	const playlistsService = new PlaylistsService(collaborationsService);
-	const playlistSongsService = new PlaylistSongsService(songsService);
-	const storageService = new StorageService(config.storage.location);
-	const userAlbumLikesService = new UserAlbumLikesService(albumsService, cacheService);
-
+const createServer = () => {
 	const server = Hapi.server({
-		port: process.env.PORT,
-		host: process.env.HOST,
+		port: config.server.port,
+		host: config.server.host,
 		routes: {
 			cors: {
 				origin: ["*"]
@@ -69,6 +57,10 @@ const init = async () => {
 		}
 	});
 
+	return server;
+};
+
+const externalPlugin = async server => {
 	await server.register([
 		{
 			plugin: Jwt
@@ -93,6 +85,19 @@ const init = async () => {
 			}
 		})
 	});
+};
+
+const registerPlugins = async server => {
+	const albumsService = new AlbumsService();
+	const songsService = new SongsService();
+	const usersService = new UsersService();
+	const cacheService = new CacheService();
+	const authenticationsService = new AuthenticationsService();
+	const collaborationsService = new CollaborationsService();
+	const playlistsService = new PlaylistsService(collaborationsService);
+	const playlistSongsService = new PlaylistSongsService(songsService);
+	const storageService = new StorageService(config.storage.location);
+	const userAlbumLikesService = new UserAlbumLikesService(albumsService, cacheService);
 
 	await server.register([
 		{
@@ -149,7 +154,7 @@ const init = async () => {
 			}
 		},
 		{
-			plugin: _exports,
+			plugin: exportsModule,
 			options: {
 				service: ProducerService,
 				playlistsService,
@@ -171,34 +176,44 @@ const init = async () => {
 			}
 		}
 	]);
+};
 
+const handleClientError = server => {
 	server.ext("onPreResponse", (request, h) => {
 		const { response } = request;
-
-		if (response instanceof Error) {
-			if (response instanceof ClientError) {
-				const newResponse = h.response({
-					status: "fail",
-					message: response.message
-				});
-				newResponse.code(response.statusCode);
-				return newResponse;
-			}
-
-			if (!response.isServer) {
-				return h.continue;
-			}
-
+		if (response instanceof ClientError) {
 			const newResponse = h.response({
-				status: "error",
-				message: "Internal server error"
+				status: "fail",
+				message: response.message
 			});
-			newResponse.code(500);
+			newResponse.code(response.statusCode);
 			return newResponse;
 		}
-
 		return h.continue;
 	});
+};
+
+const handleServerLog = server => {
+	if (process.env.NODE_ENV !== "production") {
+		server.ext("onRequest", (request, h) => {
+			logService.ServerRequestLog(request);
+			return h.continue;
+		});
+
+		server.ext("onPreResponse", (request, h) => {
+			logService.ServerResponseLog(request, h);
+			return h.continue;
+		});
+	}
+};
+
+const init = async () => {
+	const server = createServer();
+
+	await externalPlugin(server);
+	await registerPlugins(server);
+	handleClientError(server);
+	handleServerLog(server);
 
 	await server.start();
 	console.log(`Server running on ${server.info.uri}`);
