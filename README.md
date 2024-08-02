@@ -1,4 +1,4 @@
-# Open Music API
+# notes-app-back-end
 
 ---
 
@@ -30,8 +30,6 @@ Update `.bashrc`
 source ~/.bashrc
 ```
 
----
-
 ## How to Run Program
 
 #### 1. Check `.env.example` for required environment variables.
@@ -50,14 +48,6 @@ npm run build:server
 
 #### 4. Run on Docker
 
--   Build Docker Image
-
 ```bash
 npm run build:docker
-```
-
--   Run Docker Container
-
-```bash
-npm run start:docker
 ```
