@@ -35,7 +35,7 @@ const LogService = {
 		const statusCode = response.isBoom ? response.output.statusCode : response.statusCode;
 
 		console.log(
-			`[ NodeJS - Hapi ] Code: ${statusCode} | Time: ${responseTime
+			`[ Bun - Hapi ] Code: ${statusCode} | Time: ${responseTime
 				.toFixed()
 				.padStart(3, " ")}${unit} | ${paddedMethod}\t${request.path}`
 		);

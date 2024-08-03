@@ -1,5 +1,8 @@
+const autoBind = require("auto-bind");
+
 class UserAlbumLikesHandler {
 	constructor(service) {
+		autoBind(this);
 		this._service = service;
 	}
 

@@ -52,6 +52,7 @@
 		"@hapi/inert": "^7.1.0",
 		"@hapi/jwt": "^3.2.0",
 		"amqplib": "^0.10.4",
+		"auto-bind": "^4.0.0",
 		"bcrypt": "^5.1.1",
 		"bun": "^1.1.21",
 		"cross-env": "^7.0.3",

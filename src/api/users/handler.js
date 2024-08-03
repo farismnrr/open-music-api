@@ -1,5 +1,8 @@
+const autoBind = require("auto-bind");
+
 class UsersHandler {
 	constructor(service, validator) {
+		autoBind(this);
 		this._service = service;
 		this._validator = validator;
 	}
