@@ -1,4 +1,4 @@
-# Open Music API
+# Open Music API V3
 
 ---
 
@@ -30,9 +30,7 @@ Update `.bashrc`
 source ~/.bashrc
 ```
 
----
-
-## How to Run Program
+## How to Run Producer Program
 
 #### 1. Check `.env.example` for required environment variables.
 
@@ -50,14 +48,16 @@ npm run build:server
 
 #### 4. Run on Docker
 
--   Build Docker Image
-
 ```bash
 npm run build:docker
 ```
 
--   Run Docker Container
+## How to Run Consumer Program
+
+#### 1. Check `.env.example` for required environment variables.
+
+#### 2. Run the program
 
 ```bash
-npm run start:docker
+npm run start:consumer
 ```
