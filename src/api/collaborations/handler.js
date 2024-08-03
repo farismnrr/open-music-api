@@ -10,6 +10,7 @@ class CollaborationsHandler {
 
 	async postCollaborationHandler(request, h) {
 		this._validator.validateCollaborationPayload(request.payload);
+
 		const { id: credentialId } = request.auth.credentials;
 		const { playlistId, userId } = request.payload;
 
@@ -25,12 +26,12 @@ class CollaborationsHandler {
 				collaborationId
 			}
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 
 	async deleteCollaborationHandler(request, h) {
 		this._validator.validateCollaborationPayload(request.payload);
+
 		const { id: credentialId } = request.auth.credentials;
 		const { playlistId, userId } = request.payload;
 
@@ -41,8 +42,7 @@ class CollaborationsHandler {
 			status: "success",
 			message: "Collaboration deleted successfully"
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 }
 

@@ -10,9 +10,9 @@ class PlaylistsHandler {
 	// Playlist Service
 	async postPlaylistHandler(request, h) {
 		this._validator.validatePlaylistPayload(request.payload);
+
 		const { name } = request.payload;
 		const { id: credentialId } = request.auth.credentials;
-
 		const playlistId = await this._service.addPlaylist({
 			name,
 			owner: credentialId
@@ -24,8 +24,7 @@ class PlaylistsHandler {
 				playlistId
 			}
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 
 	async getPlaylistsHandler(request, h) {
@@ -36,8 +35,7 @@ class PlaylistsHandler {
 			status: "success",
 			data: { playlists }
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 
 	async deletePlaylistByIdHandler(request, h) {
@@ -51,14 +49,14 @@ class PlaylistsHandler {
 			status: "success",
 			message: "Playlist deleted successfully"
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 	// End Playlist Service
 
 	// Playlist Song Service
 	async postPlaylistSongHandler(request, h) {
 		this._validator.validatePlaylistSongPayload(request.payload);
+
 		const { id: credentialId } = request.auth.credentials;
 		const { songId } = request.payload;
 		const { id: playlistId } = request.params;
@@ -71,8 +69,7 @@ class PlaylistsHandler {
 			status: "success",
 			message: "Playlist song added successfully"
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 
 	async getPlaylistSongByIdHandler(request, h) {
@@ -88,12 +85,12 @@ class PlaylistsHandler {
 				playlist
 			}
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 
 	async deletePlaylistSongHandler(request, h) {
 		this._validator.validatePlaylistSongPayload(request.payload);
+
 		const { id: credentialId } = request.auth.credentials;
 		const { songId } = request.payload;
 		const { id: playlistId } = request.params;
@@ -106,8 +103,7 @@ class PlaylistsHandler {
 			status: "success",
 			message: "Playlist Song deleted successfully"
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 	// End Playlist Song Service
 
@@ -123,8 +119,7 @@ class PlaylistsHandler {
 			status: "success",
 			data: playlistSongActivities
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 	// End Playlist Song Activities Service
 }

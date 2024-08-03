@@ -13,7 +13,6 @@ class UploadsHandler {
 		this._validator.validateImageHeaders(cover.hapi.headers);
 
 		const { id: albumId } = request.params;
-
 		const fileName = await this._storageService.writeFile(cover, cover.hapi, albumId);
 		const fileLocation = `${request.server.info.uri}/albums/${albumId}/covers/${fileName}`;
 		await this._albumsService.updateAlbumCoverUrl(albumId, fileLocation);
@@ -25,8 +24,7 @@ class UploadsHandler {
 				fileLocation
 			}
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 }
 

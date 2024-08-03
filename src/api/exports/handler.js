@@ -16,7 +16,6 @@ class ExportsHandler {
 		const userId = request.auth.credentials.id;
 
 		await this._playlistsService.verifyPlaylistAccess(playlistId, userId);
-
 		const message = {
 			playlistId,
 			targetEmail
@@ -28,8 +27,7 @@ class ExportsHandler {
 			status: "success",
 			message: "Permintaan Anda sedang kami proses" // requirement testing message is using Bahasa Indonesia
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 }
 

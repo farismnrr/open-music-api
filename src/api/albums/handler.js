@@ -10,8 +10,8 @@ class AlbumHandler {
 	// Album Service
 	async postAlbumHandler(request, h) {
 		this._validator.validateAlbumPayload(request.payload);
-		const { name, year } = request.payload;
 
+		const { name, year } = request.payload;
 		const albumId = await this._service.addAlbum({ name, year });
 
 		const response = h.response({
@@ -20,8 +20,7 @@ class AlbumHandler {
 				albumId
 			}
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 
 	async getAlbumByIdHandler(request, h) {
@@ -33,9 +32,7 @@ class AlbumHandler {
 				album
 			}
 		});
-
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 
 	async putAlbumByIdHandler(request, h) {
@@ -48,8 +45,7 @@ class AlbumHandler {
 			status: "success",
 			message: "Album updated successfully"
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 
 	async deleteAlbumByIdHandler(request, h) {
@@ -60,11 +56,10 @@ class AlbumHandler {
 			status: "success",
 			message: "Album deleted successfully"
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 	// End Album Service
-	
+
 	// User Album Likes Service
 	async postUserAlbumLikesHandler(request, h) {
 		const { id: credentialId } = request.auth.credentials;
@@ -76,8 +71,7 @@ class AlbumHandler {
 			status: "success",
 			message: "Like is successfully added on album."
 		});
-		response.code(201);
-		return response;
+		return response.code(201);
 	}
 
 	async getUserAlbumLikesHandler(request, h) {
@@ -95,8 +89,7 @@ class AlbumHandler {
 			response.header("X-Data-Source", "cache");
 		}
 
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 
 	async deleteUserAlbumLikesHandler(request, h) {
@@ -109,8 +102,7 @@ class AlbumHandler {
 			status: "success",
 			message: "Like is successfully deleted on album."
 		});
-		response.code(200);
-		return response;
+		return response.code(200);
 	}
 	// End User Album Likes Service
 }

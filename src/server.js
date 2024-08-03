@@ -85,11 +85,11 @@ const registerPlugins = async server => {
 	const songsService = new SongsService();
 	const usersService = new UsersService();
 	const cacheService = new CacheService();
-	const authenticationsService = new AuthenticationsService();
 	const collaborationsService = new CollaborationsService();
+	const authenticationsService = new AuthenticationsService();
 	const albumsService = new AlbumsService(cacheService);
-	const playlistsService = new PlaylistsService(songsService, collaborationsService);
 	const storageService = new StorageService(config.storage.location);
+	const playlistsService = new PlaylistsService(songsService, collaborationsService);
 
 	await server.register([
 		{
@@ -140,8 +140,8 @@ const registerPlugins = async server => {
 		{
 			plugin: exportsModule,
 			options: {
-				service: ProducerService,
 				playlistsService,
+				service: ProducerService,
 				validator: ExportsValidator
 			}
 		},
