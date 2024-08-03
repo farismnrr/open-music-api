@@ -5,19 +5,19 @@
 	"version": "3.0",
 	"description": "A back-end API for managing music data, built with Node.js and Hapi framework.",
 	"module": "server.js",
-	"main": "src/producer/server.js",
+	"main": "src/server.js",
 	"type": "commonjs",
 	"scripts": {
-		"build": "npm install && bun run copy-env && bun run generate-token && bun run migrate up",
-		"build:local": "npm run build && bun run start:dev",
+		"build": "npm install && bun copy-env && bun generate-token && bun migrate up",
+		"build:local": "npm run build && bun start:dev",
 		"build:server": "npm run build && echo HOST=0.0.0.0 > .env.production && sudo npm i -g pm2 && pm2 start bun --name \"open-music-api\" -- run start:prod",
 		"build:docker": "npm run build && docker build -t farismnrr/open-music:3.0 .",
-		"start": "bun run src/server.js",
-		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"bun run src/server.js\"",
-		"start:prod": "cross-env NODE_ENV=production bun run src/server.js",
+		"start": "bun src/server.js",
+		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"node src/server.js\"",
+		"start:prod": "cross-env NODE_ENV=production bun src/server.js",
 		"migrate": "node-pg-migrate",
 		"copy-env": "bun -e \"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
-		"generate-token": "bun run src/tokenize/TokenGenerator.js"
+		"generate-token": "bun src/tokenize/TokenGenerator.js"
 	},
 	"keywords": [
 		"app",

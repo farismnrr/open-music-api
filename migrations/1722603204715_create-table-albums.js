@@ -13,7 +13,7 @@ exports.up = pgm => {
 			notNull: true
 		},
 		cover: {
-			type: "VARCHAR(100)",
+			type: "TEXT",
 			default: null
 		},
 		created_at: {
