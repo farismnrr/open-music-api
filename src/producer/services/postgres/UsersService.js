@@ -4,7 +4,7 @@ const { Pool } = require("pg");
 const { nanoid } = require("nanoid");
 const { InvariantError } = require("../../exceptions/InvariantError");
 const { AuthenticationError } = require("../../exceptions/AuthError");
-const { mapUsersModel } = require("../../utils");
+const { mapUsersModel } = require("../../../utils");
 
 class UsersService {
 	constructor() {

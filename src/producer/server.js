@@ -1,7 +1,7 @@
 const Jwt = require("@hapi/jwt");
 const Hapi = require("@hapi/hapi");
 const Inert = require("@hapi/inert");
-const config = require("./utils/config.js");
+const config = require("../utils/config.js");
 
 const albums = require("./api/albums");
 const AlbumsService = require("./services/postgres/AlbumsService");

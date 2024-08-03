@@ -1,5 +1,5 @@
 const redis = require("redis");
-const config = require("../../utils/config");
+const config = require("../../../utils/config");
 
 class CacheService {
 	constructor() {

@@ -2,7 +2,7 @@ const { Pool } = require("pg");
 const { nanoid } = require("nanoid");
 const { NotFoundError } = require("../../exceptions/NotFoundError");
 const { InvariantError } = require("../../exceptions/InvariantError");
-const { mapCollaborationsModel } = require("../../utils");
+const { mapCollaborationsModel } = require("../../../utils");
 
 class CollaborationsService {
 	constructor() {

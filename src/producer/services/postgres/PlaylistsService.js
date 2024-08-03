@@ -10,7 +10,7 @@ const {
 	mapPlaylistsWithUsernameModel,
 	mapPlaylistSongActivitiesModel,
 	mapPlaylistSongActivitiesWithUsernameModel
-} = require("../../utils");
+} = require("../../../utils");
 
 class PlaylistsService {
 	constructor(songsService, collaborationService) {
