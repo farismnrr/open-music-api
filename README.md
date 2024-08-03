@@ -30,7 +30,7 @@ Update `.bashrc`
 source ~/.bashrc
 ```
 
-## How to Run Program
+## How to Run Producer Program
 
 #### 1. Check `.env.example` for required environment variables.
 
@@ -50,4 +50,14 @@ npm run build:server
 
 ```bash
 npm run build:docker
+```
+
+## How to Run Consumer Program
+
+#### 1. Check `.env.example` for required environment variables.
+
+#### 2. Run the program
+
+```bash
+npm run start:consumer
 ```

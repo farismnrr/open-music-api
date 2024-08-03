@@ -15,7 +15,7 @@
 		"start": "bun src/producer/server.js",
 		"start:dev": "cross-env NODE_ENV=development nodemon --watch src --ext js --exec \"node src/producer/server.js\"",
 		"start:prod": "cross-env NODE_ENV=production bun src/producer/server.js",
-		"start:customer": "bun src/consumer/consumer.js",
+		"start:consumer": "bun src/consumer/consumer.js",
 		"migrate": "node-pg-migrate",
 		"copy-env": "bun -e \"const fs = require('fs'); fs.copyFileSync('.env.example', '.env');\" || cp .env.example .env",
 		"generate-token": "bun src/producer/tokenize/TokenGenerator.js"
