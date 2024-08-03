@@ -57,7 +57,7 @@ class AuthenticationsHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Refresh token deleted successfully"
+			message: "Refresh token berhasil dihapus"
 		});
 		return response.code(200);
 	}

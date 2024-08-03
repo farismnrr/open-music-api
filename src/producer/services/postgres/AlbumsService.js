@@ -59,7 +59,8 @@ class AlbumsService {
 	
 			return {
 				...albums,
-				songs
+				songs,
+				source: "database"
 			};
 		}
 	}

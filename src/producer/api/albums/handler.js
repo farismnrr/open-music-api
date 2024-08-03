@@ -48,7 +48,7 @@ class AlbumHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Album updated successfully"
+			message: "Album berhasil diperbarui"
 		});
 		return response.code(200);
 	}
@@ -59,7 +59,7 @@ class AlbumHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Album deleted successfully"
+			message: "Album berhasil dihapus"
 		});
 		return response.code(200);
 	}
@@ -74,7 +74,7 @@ class AlbumHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Like is successfully added on album."
+			message: "Like berhasil ditambahkan ke album."
 		});
 		return response.code(201);
 	}
@@ -105,7 +105,7 @@ class AlbumHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Like is successfully deleted on album."
+			message: "Like berhasil dihapus dari album."
 		});
 		return response.code(200);
 	}

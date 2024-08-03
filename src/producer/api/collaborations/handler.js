@@ -40,7 +40,7 @@ class CollaborationsHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Collaboration deleted successfully"
+			message: "Kolaborasi berhasil dihapus"
 		});
 		return response.code(200);
 	}
