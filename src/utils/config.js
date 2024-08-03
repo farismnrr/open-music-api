@@ -7,7 +7,7 @@ const config = {
 		port: process.env.PORT
 	},
 	storage: {
-		location: path.resolve(__dirname, "../../assets/uploads/images")
+		location: path.resolve(__dirname, "../api/uploads/file/images")
 	},
 	rabbitmq: {
 		server: process.env.RABBITMQ_SERVER

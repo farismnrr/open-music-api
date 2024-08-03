@@ -25,7 +25,7 @@ class ExportsHandler {
 
 		const response = h.response({
 			status: "success",
-			message: "Permintaan Anda sedang kami proses" // requirement testing message is using Bahasa Indonesia
+			message: "Permintaan Anda sedang kami proses"
 		});
 		return response.code(201);
 	}

@@ -56,7 +56,7 @@ build/Release
 
 # Dependency directories
 .cloudFiles/
-assets/uploads/
+src/api/uploads/file/
 node_modules
 jspm_packages/
 

@@ -14,12 +14,12 @@ class UploadsHandler {
 
 		const { id: albumId } = request.params;
 		const fileName = await this._storageService.writeFile(cover, cover.hapi, albumId);
-		const fileLocation = `${request.server.info.uri}/albums/${albumId}/covers/${fileName}`;
+		const fileLocation = `http://${process.env.HOST}:${process.env.PORT}/upload/images/${fileName}`;
 		await this._albumsService.updateAlbumCoverUrl(albumId, fileLocation);
 
 		const response = h.response({
 			status: "success",
-			message: "Sampul berhasil diunggah", // requirement testing message is using Bahasa Indonesia
+			message: "Sampul berhasil diunggah",
 			data: {
 				fileLocation
 			}
